@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  helloworld2
+  namespace: default
+  labels:
+    app:  helloworld2
+spec:
+  selector:
+    matchLabels:
+      app: helloworld2
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  helloworld2
+    spec:
+      containers:
+      - name:  helloworld2
+        image: IMAGETAG
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  8080
+          name:  helloworld2
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld2-svc
+spec:
+  selector:
+    app: helloworld2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
