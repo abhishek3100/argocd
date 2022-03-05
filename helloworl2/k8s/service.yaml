@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name:  helloworld2
-        image: IMAGETAG
+        image: gcr.io/jarviscool/helloworl1:v1
         resources:
           requests:
             cpu: 100m
