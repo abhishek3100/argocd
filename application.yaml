@@ -8,7 +8,7 @@ spec:
     namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: helloworl1
+    path: helloworl1/k8s
     repoURL: 'https://github.com/abhishek3100/argocd.git'
     targetRevision: HEAD
   project: default
